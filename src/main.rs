@@ -14,7 +14,6 @@ extern crate intel_mkl_src;
 
 use anyhow::{bail, Error as E, Result};
 use clap::{Parser, ValueEnum};
-
 use candle::{DType, Device, Tensor};
 use candle_nn::VarBuilder;
 use candle_transformers::generation::{LogitsProcessor, Sampling};
@@ -23,7 +22,6 @@ use std::io::Write;
 
 use candle_transformers::models::llama as model;
 use model::{Llama, LlamaConfig};
-mod token_output_stream;
 
 const EOS_TOKEN: &str = "</s>";
 const DEFAULT_PROMPT: &str = "My favorite theorem is ";
@@ -190,7 +188,7 @@ fn main() -> Result<()> {
             | Which::V32_3b
             | Which::V32_3bInstruct
             | Which::Solar10_7B => {
-                hub_load_safetensors(&api, "model.safetensors.index.json")?
+                hello_candle::hub_load_safetensors(&api, "model.safetensors.index.json")?
             }
             Which::SmolLM2_360M
             | Which::SmolLM2_360MInstruct
@@ -221,7 +219,7 @@ fn main() -> Result<()> {
         .map_err(E::msg)?
         .get_ids()
         .to_vec();
-    let mut tokenizer = token_output_stream::TokenOutputStream::new(tokenizer);
+    let mut tokenizer = hello_candle::token_output_stream::TokenOutputStream::new(tokenizer);
 
     println!("starting the inference loop");
     print!("{prompt}");
