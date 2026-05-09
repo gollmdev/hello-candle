@@ -4,3 +4,10 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+anyhow = "1.0.102"
+candle-core = { git = "https://github.com/huggingface/candle.git", version = "0.10.2", features = ["cuda"] }
+candle-nn = { git = "https://github.com/huggingface/candle.git", version = "0.10.2", features = ["cuda"] }
+candle-transformers = { git = "https://github.com/huggingface/candle.git", version = "0.10.2", features = ["cuda"] }
+clap = "4.6.1"
+hf-hub = "0.5.0"
+serde_json = "1.0.149"
