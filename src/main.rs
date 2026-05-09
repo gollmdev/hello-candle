@@ -146,6 +146,9 @@ fn main() -> Result<()> {
     };
     let (llama, tokenizer_filename, mut cache, config) = {
         let api = Api::new()?;
+
+        println!("Api: {api:?}");
+
         let model_id = args.model_id.unwrap_or_else(|| {
             let str = match args.which {
                 Which::V1 => "Narsil/amall-7b",
@@ -295,3 +298,6 @@ fn main() -> Result<()> {
     );
     Ok(())
 }
+
+// cargo run --bin hello-candle --  --help
+// cargo run --bin hello-candle --  --which tiny-llama-1.1b-chat --prompt   你好
