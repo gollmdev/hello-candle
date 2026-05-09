@@ -5,9 +5,19 @@ edition = "2024"
 
 [dependencies]
 anyhow = "1.0.102"
-candle-core = { git = "https://github.com/huggingface/candle.git", version = "0.10.2", features = ["cuda"] }
+candle = { package = "candle-core", git = "https://github.com/huggingface/candle.git", version = "0.10.2", features = ["cuda"] }
 candle-nn = { git = "https://github.com/huggingface/candle.git", version = "0.10.2", features = ["cuda"] }
 candle-transformers = { git = "https://github.com/huggingface/candle.git", version = "0.10.2", features = ["cuda"] }
-clap = "4.6.1"
+clap = { version = "4.6.1", features = ["derive"] }
+image = { version = "0.25.2", default-features = false, features = [
+    "jpeg",
+    "png",
+] }
+minijinja = { version = "2", features = ["loader"] }
+serde = { version = "1.0.171", features = ["derive"] }
+tracing-chrome = "0.7.1"
+tracing-subscriber = "0.3.7"
+symphonia = { version = "0.5.3", features = ["all"], optional = true }
+tokenizers = { version = "0.22.0", default-features = false }
 hf-hub = "0.5.0"
 serde_json = "1.0.149"
